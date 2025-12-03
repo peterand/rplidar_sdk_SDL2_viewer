@@ -41,7 +41,8 @@ int main(int argc, const char * argv[])
     ILidarDriver * drv = *lidarResult;
 
     // Connect
-    sl_result res = drv->connect(*channel);
+    //sl_result res = drv->connect(*channel);
+    sl_result res = drv->connect(channel);
     if (!SL_IS_OK(res)) {
         std::fprintf(stderr, "Error: cannot connect to LIDAR (error code: %08x)\n", res);
         delete drv;
@@ -51,7 +52,7 @@ int main(int argc, const char * argv[])
 
     // Start motor (for A1/A2/A3; S1/S2 sometimes don’t need this but it doesn’t hurt)
     drv->startMotor();
-
+ 
     // Start scan
     LidarScanMode scanMode;
     res = drv->startScan(false, true, 0, &scanMode);
