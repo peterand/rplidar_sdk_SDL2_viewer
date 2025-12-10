@@ -253,7 +253,7 @@ void renderScan(SDL_Renderer *renderer, const SDL_Point &center, const std::vect
         if (distanceMm <= 0.0f || node.quality == 0) {
             continue;
         }
-        const float angle = angleToRadians(node);
+        const float angle = -angleToRadians(node);  // Negate because RPLIDAR increases angle clockwise.
         const float radius = std::min(distanceMm, displayRangeMm) * mmToPixels;
         const int x = static_cast<int>(std::lround(center.x + radius * std::cos(angle)));
         const int y = static_cast<int>(std::lround(center.y - radius * std::sin(angle)));
