@@ -225,3 +225,6 @@ Contact Slamtec
 If you have any extra questions, please feel free to contact us at our support email:
 
     support@slamtec.com
+
+TODO: Fix makefiles to get rid of make -C app/ultra_simple
+      Fix makefiles so ultra_simple compiles to /home/peter/rplidar_sdk_SDL2/output/Linux/Release/ instead of to /home/peter/rplidar_sdk_SDL2/app/ultra_simple/
