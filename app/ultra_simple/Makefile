@@ -40,8 +40,4 @@ $(SDK_LIB):
 
 clean:
 	rm -f $(TARGET) $(OBJ)
-#all: build_app
 
-#include $(SDK_ROOT)/mak_common.inc
-
-#clean: clean_app
