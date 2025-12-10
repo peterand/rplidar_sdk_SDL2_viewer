@@ -1,6 +1,7 @@
 SDK_ROOT := ../..
 
-SDK_LIB  := $(SDK_ROOT)/output/Linux/Release/libsl_lidar_sdk.a
+SDK_LIB    := $(SDK_ROOT)/output/Linux/Release/libsl_lidar_sdk.a
+OUTPUT_DIR := $(SDK_ROOT)/output/Linux/Release
 
 PKG_CONFIG ?= pkg-config
 HAVE_SDL2  := $(shell $(PKG_CONFIG) --exists sdl2 && echo 1 || echo 0)
@@ -22,7 +23,7 @@ endif
 
 LDFLAGS  := $(SDK_LIB) $(SDL_LDFLAGS) -lm -lpthread
 
-TARGET   := ultra_simple
+TARGET   := $(OUTPUT_DIR)/ultra_simple
 SRC      := main.cpp
 OBJ      := $(SRC:.cpp=.o)
 .PHONY: all clean sdk
@@ -30,6 +31,7 @@ OBJ      := $(SRC:.cpp=.o)
 all: $(TARGET)
 
 $(TARGET): $(SDK_LIB) $(OBJ)
+	@mkdir -p $(dir $@)
 	$(CXX) -o $@ $(OBJ) $(LDFLAGS)
 
 $(SDK_LIB):
@@ -40,4 +42,3 @@ $(SDK_LIB):
 
 clean:
 	rm -f $(TARGET) $(OBJ)
-
